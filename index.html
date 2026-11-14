@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Contact Form — Formclick</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css"
+        integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX"
+        crossorigin="anonymous">
+  <style>
+    /* Honeypot: off-screen for people, visible to bots */
+    .fc-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  </style>
+</head>
+<body class="bg-body-tertiary">
+
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4 p-md-5">
+            <h1 class="h3 mb-1">Contact us</h1>
+            <p class="text-body-secondary mb-4">Send us a message and we'll get back to you.</p>
+
+            <!-- Replace YOUR_ACCESS_KEY with your form's access key from the Formclick dashboard. -->
+            <form action="https://api.formclick.io/submit" method="POST"
+                  data-success-msg="Thanks! Your message has been sent.">
+              <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+              <input type="hidden" name="subject" value="New message from the Bootstrap contact form">
+              <!-- Honeypot: hidden from people, bots fill it and the submission is discarded -->
+              <input type="text" name="_honeypot" class="fc-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Jane Smith" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="jane@example.com" required>
+                </div>
+                <div class="col-12">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message…" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary px-4">Send message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Submits in the background, shows a loading state and the success or error message.
+       Without it, the form still works: the browser posts it and Formclick shows a thank-you page. -->
+  <script src="https://cdn.formclick.io/formclick.min.js"></script>
+</body>
+</html>
